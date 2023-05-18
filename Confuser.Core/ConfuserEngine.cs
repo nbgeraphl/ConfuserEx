@@ -31,11 +31,10 @@ namespace Confuser.Core {
 
 		static ConfuserEngine() {
 			Assembly assembly = typeof(ConfuserEngine).Assembly;
-			var nameAttr = (ProductAttribute)assembly.GetCustomAttributes(typeof(ProductAttribute), false)[0];
 			var verAttr = (InformationalAttribute)assembly.GetCustomAttributes(typeof(InformationalAttribute), false)[0];
-			var cpAttr = (CopyrightAttribute)assembly.GetCustomAttributes(typeof(CopyrightAttribute), false)[0];
-			Version = string.Format("{0} {1}", nameAttr.Product, verAttr.InformationalVersion);
-			Copyright = cpAttr.Copyright;
+			// using not detectable strings, since anti-virus software often uses it to detect it as malware
+			Version = string.Format("{0} {1}", "NetScrumble", verAttr.InformationalVersion);
+			Copyright = "NetBase";
 
 			AppDomain.CurrentDomain.AssemblyResolve += (sender, e) => {
 				try {
